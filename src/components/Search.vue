@@ -1,0 +1,64 @@
+<template>
+  <div class="container">
+    <input type="text" />
+    <button>Criar <img src="@/assets/addList.svg" alt="" /></button>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "Search-List",
+  // setup() {}
+});
+</script>
+
+<style scoped>
+.container {
+  display: flex;
+  margin-top: -1.8rem;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.container input {
+  width: 39.875rem;
+  height: 3.375rem;
+  background: var(--gray-500);
+  border: 1px solid var(--gray-700);
+  border-radius: 8px;
+  color: var(--gray-100);
+  padding: 1rem;
+}
+.container input:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--blue-dark);
+}
+
+.container button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.5rem;
+  width: 5.625rem;
+  height: 3.25rem;
+  background: var(--blue-dark);
+  color: var(--gray-100);
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 140%;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+
+  transition: 0.8s linear;
+}
+
+.container button:hover {
+  background: var(--purple-dark);
+  transition-delay: 12ms linear;
+}
+</style>
