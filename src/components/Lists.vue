@@ -8,13 +8,19 @@
       </div>
       <div class="completed">
         <p>Concluídas</p>
-        <span> 8 de {{ tasks.length }} </span>
+        <span> {{ completedTasks.length }} de {{ tasks.length }} </span>
       </div>
     </header>
 
     <section v-for="task in tasks" :key="task.id">
-      <ul>
-        <input type="radio" name="taskRadio" id="" class="radio" />
+      <ul :class="{ completedTask: task.completed }">
+        <input
+          type="radio"
+          :id="'taskRadio-' + task.id"
+          class="radio"
+          :checked="task.completed"
+          @click="handleTaskClick(task)"
+        />
         <p>{{ task.name }}</p>
         <img
           @click="handleDeleteTask(task.id)"
@@ -36,19 +42,37 @@ export default defineComponent({
   components: { Search },
   setup() {
     const tasks = ref([]);
+    const completedTasks = ref([]);
 
     const handleAddTask = (newTask) => {
-      tasks.value.push({ id: tasks.value.length + 1, name: newTask });
+      tasks.value.push({
+        id: tasks.value.length + 1,
+        name: newTask,
+        completed: false,
+      });
     };
 
     const handleDeleteTask = (taskId) => {
       tasks.value = tasks.value.filter((task) => task.id !== taskId);
     };
 
+    const handleTaskClick = (task) => {
+      task.completed = !task.completed;
+      if (task.completed) {
+        completedTasks.value.push(task);
+      } else {
+        completedTasks.value = completedTasks.value.filter(
+          (completedTask) => completedTask.id !== task.id
+        );
+      }
+    };
+
     return {
       tasks,
+      completedTasks,
       handleAddTask,
       handleDeleteTask,
+      handleTaskClick,
     };
   },
 });
