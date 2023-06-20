@@ -13,6 +13,8 @@ import Header from "./components/Header.vue";
 import Search from "./components/Search.vue";
 import Lists from "./components/Lists.vue";
 
+import "../src/global.css";
+
 export default defineComponent({
   name: "App",
   components: { Header, Search, Lists },
