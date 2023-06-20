@@ -1,44 +1,27 @@
 <template>
-  <router-view />
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue';
+import HelloWorld from './components/HelloWorld.vue';
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+});
+</script>
+
 <style>
-:root {
-  --gray-700: #0d0d0d;
-  --gray-600: #1e1e1e;
-  --gray-500: #262626;
-  --gray-400: #333333;
-  --gray-300: #808080;
-  --gray-200: #d9d9d9;
-  --gray-100: #f2f2f2;
-
-  --blue-dark: #1e6f9f;
-  --blue: #4ea8de;
-
-  --purple-dark: #5e60ce;
-  --purple: #8284fa;
-
-  --danger: #e25858;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: var(--gray-600);
-  color: var(--gray-100);
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-}
-
-body,
-input,
-textarea,
-button {
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>

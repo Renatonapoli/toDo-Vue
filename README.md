@@ -1,4 +1,4 @@
-# list-de-tarefas
+# list
 
 ## Project setup
 ```
