@@ -1,21 +1,21 @@
 <template>
   <v-flex class="containerLists">
-    <Search />
+    <Search @addTask="handleAddTask" />
     <header>
       <div class="taskCreated">
         <p>Tarefas criadas</p>
-        <span>2</span>
+        <span>{{ tasks.length }}</span>
       </div>
       <div class="completed">
         <p>Concluídas</p>
-        <span> 8 de 10 </span>
+        <span> 8 de {{ tasks.length }} </span>
       </div>
     </header>
 
-    <section>
+    <section v-for="task in tasks" :key="task.id">
       <ul>
         <input type="radio" name="taskRadio" id="" class="radio" />
-        <p>Texto digitado</p>
+        <p>{{ task.name }}</p>
         <img src="@/assets/trash.svg" alt="" />
       </ul>
     </section>
@@ -23,16 +23,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 import Search from "../components/Search.vue";
 
 export default defineComponent({
   name: "Listas-de-tarefas",
   components: { Search },
-  // setup() {
+  setup() {
+    const tasks = ref([]);
 
-  // },
+    const handleAddTask = (newTask) => {
+      tasks.value.push({ id: tasks.value.length + 1, name: newTask });
+    };
+
+    return {
+      tasks,
+      handleAddTask,
+    };
+  },
 });
 </script>
 

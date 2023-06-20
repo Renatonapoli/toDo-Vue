@@ -1,19 +1,32 @@
 <template>
   <v-flex class="container">
-    <input type="text" />
-    <button>
+    <input type="text" v-model="task" />
+    <button @click="setTask">
       Criar <img src="@/assets/addList.svg" alt="Icone de do botão criar" />
     </button>
   </v-flex>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, EventEmitter } from "vue";
 
 export default defineComponent({
   name: "Search-List",
+  emits: ["addTask"],
 
-  // setup() {},
+  setup(_, { emit }) {
+    const task = ref("");
+
+    const setTask = () => {
+      emit("addTask", task.value);
+      task.value = "";
+    };
+
+    return {
+      task,
+      setTask,
+    };
+  },
 });
 </script>
 
