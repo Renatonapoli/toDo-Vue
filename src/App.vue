@@ -1,10 +1,10 @@
 <template>
-  <v-flex>
+  <div>
     <Header />
     <main class="container">
       <Lists />
     </main>
-  </v-flex>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,6 +25,9 @@ export default defineComponent({
 .container {
   display: flex;
   justify-content: center;
-  width: 100%;
+
+  @media (max-width: 768px) {
+    padding-inline: 0.5rem;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-flex class="containerLists">
+  <div class="containerLists">
     <Search @addTask="handleAddTask" />
     <header>
       <div class="taskCreated">
@@ -29,7 +29,7 @@
         />
       </ul>
     </section>
-  </v-flex>
+  </div>
 </template>
 
 <script lang="ts">
@@ -37,14 +37,20 @@ import { defineComponent, ref } from "vue";
 
 import Search from "../components/Search.vue";
 
+interface Task {
+  id: number;
+  name: string;
+  completed: boolean;
+}
+
 export default defineComponent({
   name: "Listas-de-tarefas",
   components: { Search },
   setup() {
-    const tasks = ref([]);
-    const completedTasks = ref([]);
+    const tasks = ref<Array<Task>>([]);
+    const completedTasks = ref<Array<Task>>([]);
 
-    const handleAddTask = (newTask) => {
+    const handleAddTask = (newTask: string) => {
       tasks.value.push({
         id: tasks.value.length + 1,
         name: newTask,
@@ -52,11 +58,22 @@ export default defineComponent({
       });
     };
 
-    const handleDeleteTask = (taskId) => {
-      tasks.value = tasks.value.filter((task) => task.id !== taskId);
+    const handleDeleteTask = (taskId: number) => {
+      const taskIndex = tasks.value.findIndex((task) => task.id === taskId);
+      if (taskIndex !== -1) {
+        const task = tasks.value[taskIndex];
+        tasks.value.splice(taskIndex, 1);
+        if (task.completed) {
+          completedTasks.value.splice(completedTasks.value.indexOf(task), 1);
+        }
+      }
     };
 
-    const handleTaskClick = (task) => {
+    const handleTaskClick = (task: {
+      id: number;
+      name: string;
+      completed: boolean;
+    }) => {
       task.completed = !task.completed;
       if (task.completed) {
         completedTasks.value.push(task);
@@ -149,6 +166,12 @@ section {
   border: 1px solid var(--gray-400);
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
   border-radius: 8px;
+
+  @media (max-width: 768px) {
+    width: 24rem;
+    height: 3rem;
+    padding: 0.5rem;
+  }
 }
 
 section ul {
@@ -163,6 +186,10 @@ section input {
 
   width: 1.063rem;
   height: 1.063rem;
+
+  @media (max-width: 768px) {
+    width: 2rem;
+  }
 }
 
 section input:checked {
@@ -177,7 +204,12 @@ section p {
   word-break: break-word;
   margin-right: auto;
   margin-left: 0.75rem;
+  margin-bottom: 0.75rem;
   font-size: 0.875rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 }
 
 .completedTask {

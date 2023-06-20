@@ -1,10 +1,10 @@
 <template>
-  <v-flex class="container">
+  <div class="container">
     <input type="text" v-model="task" />
     <button @click="setTask">
       Criar <img src="@/assets/addList.svg" alt="Icone de do botão criar" />
     </button>
-  </v-flex>
+  </div>
 </template>
 
 <script lang="ts">
@@ -36,17 +36,30 @@ export default defineComponent({
   margin-top: -1.8rem;
   position: relative;
   justify-content: center;
+
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: start;
+    position: inherit;
+  }
 }
 
 .container input {
-  width: 39.875rem;
-  height: 3.375rem;
+  width: 39.875em;
+  height: 3.375em;
   background: var(--gray-500);
   border: 1px solid var(--gray-700);
   border-radius: 8px;
   color: var(--gray-100);
   padding: 1rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    width: 23.5rem;
+    margin-bottom: 1rem;
+  }
 }
 .container input:focus {
   outline: transparent;
@@ -71,6 +84,12 @@ export default defineComponent({
   cursor: pointer;
 
   transition: 0.8s linear;
+
+  @media (max-width: 768px) {
+    width: 4.625rem;
+    height: 2.5rem;
+    font-size: 0.8rem;
+  }
 }
 
 .container button:hover {

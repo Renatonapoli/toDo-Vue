@@ -1,7 +1,7 @@
 <template>
-  <v-flex class="logo">
+  <div class="logo">
     <img src="@/assets/logo.svg" alt="logo" />
-  </v-flex>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,5 +25,10 @@ export default defineComponent({
 .logo img {
   width: 7.92rem;
   height: 2.9rem;
+
+  @media (max-width: 768px) {
+    width: 6rem;
+    height: 2.9rem;
+  }
 }
 </style>
