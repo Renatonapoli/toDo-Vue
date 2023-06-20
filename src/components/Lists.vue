@@ -1,6 +1,6 @@
 <template>
   <div class="containerLists">
-    <Search @addTask="handleAddTask" />
+    <Search :isFocused="isSearchFocused" @addTask="handleAddTask" />
     <header>
       <div class="taskCreated">
         <p>Tarefas criadas</p>
@@ -49,13 +49,17 @@ export default defineComponent({
   setup() {
     const tasks = ref<Array<Task>>([]);
     const completedTasks = ref<Array<Task>>([]);
+    const isSearchFocused = ref<boolean>(false);
 
     const handleAddTask = (newTask: string) => {
-      tasks.value.push({
-        id: tasks.value.length + 1,
-        name: newTask,
-        completed: false,
-      });
+      if (newTask.trim() !== "") {
+        tasks.value.push({
+          id: tasks.value.length + 1,
+          name: newTask,
+          completed: false,
+        });
+        isSearchFocused.value = false;
+      }
     };
 
     const handleDeleteTask = (taskId: number) => {

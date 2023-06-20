@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :class="{ focused: isFocused }">
     <input type="text" v-model="task" />
     <button @click="setTask">
       Criar <img src="@/assets/addList.svg" alt="Icone de do botão criar" />
@@ -13,6 +13,12 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "Search-List",
   emits: ["addTask"],
+  props: {
+    isFocused: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
   setup(_, { emit }) {
     const task = ref("");
@@ -62,6 +68,11 @@ export default defineComponent({
   }
 }
 .container input:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--blue-dark);
+}
+
+.focused {
   outline: transparent;
   box-shadow: 0 0 0 2px var(--blue-dark);
 }
