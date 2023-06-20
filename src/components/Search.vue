@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, EventEmitter } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "Search-List",

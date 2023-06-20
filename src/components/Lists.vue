@@ -16,7 +16,11 @@
       <ul>
         <input type="radio" name="taskRadio" id="" class="radio" />
         <p>{{ task.name }}</p>
-        <img src="@/assets/trash.svg" alt="" />
+        <img
+          @click="handleDeleteTask(task.id)"
+          src="@/assets/trash.svg"
+          alt=""
+        />
       </ul>
     </section>
   </v-flex>
@@ -37,9 +41,14 @@ export default defineComponent({
       tasks.value.push({ id: tasks.value.length + 1, name: newTask });
     };
 
+    const handleDeleteTask = (taskId) => {
+      tasks.value = tasks.value.filter((task) => task.id !== taskId);
+    };
+
     return {
       tasks,
       handleAddTask,
+      handleDeleteTask,
     };
   },
 });
