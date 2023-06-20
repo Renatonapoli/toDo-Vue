@@ -1,16 +1,149 @@
 <template>
-  <div>
-    <h1>Listas</h1>
-  </div>
+  <v-flex class="containerLists">
+    <Search />
+    <header>
+      <div class="taskCreated">
+        <p>Tarefas criadas</p>
+        <span>2</span>
+      </div>
+      <div class="completed">
+        <p>Concluídas</p>
+        <span> 8 de 10 </span>
+      </div>
+    </header>
+
+    <section>
+      <ul>
+        <input type="radio" name="taskRadio" id="" class="radio" />
+        <p>Texto digitado</p>
+        <img src="@/assets/trash.svg" alt="" />
+      </ul>
+    </section>
+  </v-flex>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import Search from "../components/Search.vue";
+
 export default defineComponent({
   name: "Listas-de-tarefas",
+  components: { Search },
   // setup() {
 
   // },
 });
 </script>
+
+<style scoped>
+.containerLists header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.taskCreated {
+  display: flex;
+  margin: 0.5rem;
+}
+
+.taskCreated p {
+  font-weight: 700;
+  margin-left: -0.5rem;
+  font-size: 0.88rem;
+  color: var(--blue);
+}
+
+.taskCreated span {
+  display: flex;
+  margin-left: 0.5rem;
+  justify-content: center;
+  background: var(--gray-400);
+  width: 1.5rem;
+  height: 1.2rem;
+  padding: 0.13rem 0.5rem;
+  border-radius: 999px;
+  gap: 0.8rem;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.completed {
+  display: flex;
+  align-items: center;
+}
+
+.completed p {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--purple);
+}
+
+.completed span {
+  display: flex;
+  margin-left: 0.5rem;
+  justify-content: center;
+  background: var(--gray-400);
+  width: 3.75rem;
+  height: 1.1875rem;
+  padding: 0.13rem 0.5rem;
+  border-radius: 999px;
+  gap: 0.8rem;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+section {
+  white-space: normal;
+  background: var(--gray-500);
+  width: 46rem;
+  height: 72px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--gray-400);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+}
+
+section ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+section input {
+  appearance: initial;
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+
+  width: 1.063rem;
+  height: 1.063rem;
+}
+
+section input:checked {
+  border: none;
+  background: url(@/assets/check.svg) no-repeat var(--purple-dark);
+  background-position: center;
+}
+
+section p {
+  width: 45rem;
+
+  word-break: break-word;
+  margin-right: auto;
+  margin-left: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.completedTask {
+  text-decoration: line-through;
+}
+
+section img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+</style>
