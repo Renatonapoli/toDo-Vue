@@ -1,6 +1,6 @@
 <template>
   <div class="containerLists">
-    <Search :isFocused="isSearchFocused" @addTask="handleAddTask" />
+    <Search @addTask="handleAddTask" />
     <header>
       <div class="taskCreated">
         <p>Tarefas criadas</p>
@@ -12,7 +12,12 @@
       </div>
     </header>
 
-    <section v-for="task in tasks" :key="task.id">
+    <ul v-if="tasks.length === 0" class="zeroList">
+      <img src="../../src/assets/Clipboard.svg" alt="" />
+      <p>Você ainda não tem tarefas cadastradas</p>
+      <span>Crie tarefas e organize seus itens a fazer</span>
+    </ul>
+    <section v-else v-for="task in tasks" :key="task.id">
       <ul :class="{ completedTask: task.completed }">
         <input
           type="radio"
@@ -223,5 +228,32 @@ section p {
 section img {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.zeroList {
+  display: flex;
+  margin-top: 5.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.zeroList img {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.zeroList p {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-300);
+}
+
+.zeroList span {
+  font-weight: 400;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  color: var(--gray-300);
 }
 </style>
